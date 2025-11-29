@@ -1,0 +1,10 @@
+-- Exercise 02: create view v_generated_dates with generated_date from 2022-01-01 to 2022-01-31
+
+CREATE VIEW v_generated_dates AS
+SELECT day::DATE AS generated_date
+FROM generate_series(
+    '2022-01-01'::DATE,
+    '2022-01-31'::DATE,
+    '1 day'::INTERVAL
+) AS day
+ORDER BY generated_date;
