@@ -50,6 +50,4 @@ Each exercise is implemented in a separate SQL script in this folder.
 
 - `day00_ex09.sql`<br>
     Using a subquery in the `FROM` clause to pre-filter `person_visits` by dates `2022-01-07` to `2022-01-09`, return person names and pizzeria names for these visits.
-    Resolve names via subqueries in the `SELECT` clause and sort by person name (ASC) and pizzeria name (DESC).  
-
-The focus of this day is on basic `SELECT` statements, filtering, ordering, simple subqueries and conditional expressions.
+    Resolve names via subqueries in the `SELECT` clause and sort by person name (ASC) and pizzeria name (DESC).
