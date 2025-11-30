@@ -6,7 +6,7 @@ are easy to recreate.
 
 > ⚠️ Some days build directly on the objects and data created in previous days  
 > (for example, views, indexes, additional data).  
-> **It is recommended to go through the days in numerical order** (Day_00 → Day_01 → …),
+> **It is recommended to go through the days in numerical order** (Day_00 → Day_01 → …),  
 > starting from a newly created database initialized only with the demo script.
 
 ## Demo databases
@@ -29,7 +29,7 @@ Typical workflow:
 
 Used in Day 11:
 
-- `demo_dwh.sql` – creates a simple data warehouse schema (`user`, `balance`, `currency`)
+- `demo_dwh.sql` – creates a simple data warehouse schema (`user`, `balance`, `currency`)  
   and loads sample data with temporal history in the `updated` column.
 
 Typical workflow:
@@ -47,17 +47,17 @@ The SQL learning module is organised into day-based subfolders:
 - `Day_02/` – outer joins, CTEs, generated date series and advanced filtering.
 - `Day_03/` – data modification (`INSERT`, `UPDATE`, `DELETE`) and set logic on visits/orders.
 - `Day_04/` – views and materialized views, helper datasets and symmetric set operations.
-- `Day_05/` – B-tree indexes, functional and multicolumn indexes, partial uniqueness and
-  performance checks with `EXPLAIN ANALYZE`.
+- `Day_05/` – B-tree indexes, functional and multicolumn indexes, partial uniqueness and performance   
+  checks with `EXPLAIN ANALYZE`.
 - `Day_06/` – personal discount model: new table, constraints, indexes, comments and sequences.
 - `Day_07/` – grouped aggregations, per-pizzeria and per-address metrics, derived analytical measures.
-- `Day_08/` – transactions and isolation levels (`READ COMMITTED`, `REPEATABLE READ`,
-  `SERIALIZABLE`), classical anomalies and deadlocks.
+- `Day_08/` – transactions and isolation levels (`READ COMMITTED`, `REPEATABLE READ`, `SERIALIZABLE`),  
+  classical anomalies and deadlocks.
 - `Day_09/` – audit triggers and SQL / PL/pgSQL functions (parameterised queries, helpers, Fibonacci).
-- `Day_10/` – Traveling Salesman Problem in SQL: recursive CTE over a small weighted graph of cities,
+- `Day_10/` – Traveling Salesman Problem in SQL: recursive CTE over a small weighted graph of cities,  
   generation of all tours and comparison of minimum / maximum total cost.
-- `Day_11/` – finance data warehouse mini-project: user balances, currency rates and
-  historical FX logic (nearest past / future rate).
+- `Day_11/` – finance data warehouse mini-project: user balances, currency rates and historical FX logic  
+  (nearest past / future rate).
 
 Each day folder typically contains:
 
@@ -68,9 +68,9 @@ Each day folder typically contains:
 ## Assumptions and technology
 
 - The exercises target PostgreSQL and use PostgreSQL-compatible SQL syntax.
-- Demo schemas are intentionally small and simple, so they can be used both for learning
+- Demo schemas are intentionally small and simple, so they can be used both for learning  
   and for quick prototyping.
-- Model scripts such as `pizza_demo_db.sql` and `demo_dwh.sql` are self-contained:
+- Model scripts such as `pizza_demo_db.sql` and `demo_dwh.sql` are self-contained:  
   running them in an empty database is enough to create all required tables and load demo data.
 
 ## Purpose
@@ -78,5 +78,5 @@ Each day folder typically contains:
 The goal of this module is to:
 
 - document learning progress in SQL;
-- provide a clean, reproducible set of examples for querying, filtering, aggregation,
+- provide a clean, reproducible set of examples for querying, filtering, aggregation,  
   indexing and basic data modelling.
