@@ -2,8 +2,8 @@
 
 This folder contains introductory SQL exercises based on a small demo database about people, pizzerias, visits and orders.
 
-The database schema and sample data are created by the script in the parent folder (`../pizza_demo_db.sql`).  
-The ER diagram is available as `../er_diagram.png`.
+The database schema and sample data are created by the script in the parent folder (`../Materials/pizza_demo_db.sql`).  
+The ER diagram is available as `../Materials/er_diagram.png`.
 
 ## Tables (short overview)
 

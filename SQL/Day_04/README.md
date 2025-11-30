@@ -3,8 +3,8 @@
 This folder contains SQL exercises focused on virtual views, materialized views and working with derived data sets.
 All tasks use the same demo database about people, pizzerias, visits and orders.
 
-The database schema and sample data are created by the script `../pizza_demo_db.sql`.  
-The ER diagram is available as `../er_diagram.png`.
+The database schema and sample data are created by the script `../Materials/pizza_demo_db.sql`.  
+The ER diagram is available as `../Materials/er_diagram.png`.
 
 ## Exercises and solutions
 

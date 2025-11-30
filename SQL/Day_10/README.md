@@ -1,4 +1,4 @@
-# Traveling Salesman Problem in SQL
+# Day 10 – Traveling Salesman Problem in SQL
 
 This mini-project implements a simple version of the Traveling Salesman Problem (TSP)
 using recursive SQL queries on a small graph of cities.
