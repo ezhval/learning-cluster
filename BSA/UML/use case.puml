@@ -1,0 +1,21 @@
+@startuml
+title BAP — варианты использования онлайн-записи
+
+actor "Клиент барбершопа" as Client
+actor "Менеджер барбершопа" as Manager
+
+rectangle "Система онлайн-записи BAP" {
+  usecase "UC_BAP_MGR_01\nВести расписание\nуслуг мастеров" as UC_MGR_01
+  usecase "UC_BAP_CLT_01\nВыбрать услугу,\nмастера и время" as UC_CLT_01
+  usecase "UC_BAP_CLT_02\nОформить онлайн-\nзапись на услугу" as UC_CLT_02
+}
+
+Manager --> UC_MGR_01
+
+Client --> UC_CLT_01
+Client --> UC_CLT_02
+
+' UC_BAP_CLT_02 включает UC_BAP_CLT_01
+UC_CLT_02 ..> UC_CLT_01 : <<include>>
+
+@enduml

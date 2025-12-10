@@ -1,0 +1,118 @@
+@startuml
+title BAP — модель предметной области\n(диаграмма классов с атрибутами)
+
+' ===== КЛАССЫ =====
+
+class "Категория услуги" as ServiceCategory {
+  +id: int
+  +name: string           ' название категории
+  +description: string    ' описание (опц.)
+  +isActive: bool         ' показывать ли в каталоге
+}
+
+class "Услуга" as Service {
+  +id: int
+  +name: string           ' название услуги
+  +description: string
+  +durationMinutes: int   ' длительность, мин
+  +basePrice: decimal     ' базовая цена
+  +isActive: bool
+}
+
+class "Мастер" as Master {
+  +id: int
+  +fullName: string
+  +phone: string
+  +email: string
+  +specialization: string ' стрижка / окрашивание / барбер и т.п.
+  +isActive: bool         ' работает ли в салоне
+}
+
+class "Мастер+Услуга" as MasterService {
+  +id: int
+  +price: decimal         ' цена конкретно у этого мастера (может отличаться от базы)
+  +durationMinutes: int   ' длительность у этого мастера (если отличается)
+  +isActive: bool
+}
+
+class "Слот" as Slot {
+  +id: int
+  +date: date
+  +startTime: time
+  +endTime: time
+  +status: SlotStatus     ' свободен / занят / заблокирован
+}
+
+class "Запись" as Booking {
+  +id: int
+  +createdAt: datetime
+  +visitDateTime: datetime
+  +status: BookingStatus  ' создана / подтверждена / отменена / выполнена / неявка
+  +source: string         ' онлайн / админ / звонок
+  +comment: string
+}
+
+class "Клиент" as Client {
+  +id: int
+  +fullName: string
+  +phone: string
+  +email: string
+  +notes: string          ' примечания для салона
+  +isVip: bool
+  +isBlocked: bool
+}
+
+class "Учётная запись" as Account {
+  +id: int
+  +login: string
+  +passwordHash: string
+  +role: string           ' client / master / admin
+  +isActive: bool
+  +createdAt: datetime
+}
+
+class "Платёж" as Payment {
+  +id: int
+  +amount: decimal
+  +currency: string
+  +status: PaymentStatus  ' создан / оплачен / отменён / ошибка
+  +method: string         ' карта / наличные / онлайн-сервис
+  +paidAt: datetime
+  +externalId: string     ' id в платёжном шлюзе
+}
+
+class "Напоминание" as Reminder {
+  +id: int
+  +channel: string        ' sms / push / email
+  +plannedAt: datetime    ' когда планируем отправить
+  +sentAt: datetime       ' когда реально отправили
+  +status: ReminderStatus ' запланировано / отправлено / ошибка / отменено
+}
+
+class "Отзыв" as Review {
+  +id: int
+  +rating: int            ' 1–5
+  +comment: string
+  +createdAt: datetime
+  +isVisible: bool        ' модерация: показывать/скрывать
+}
+
+' ===== СВЯЗИ =====
+
+ServiceCategory "1" -- "0..*" Service : объединяет услуги
+
+Master "1" -- "0..*" MasterService : выполняет услуги
+Service "1" -- "0..*" MasterService : доступна у мастера
+
+Master  "1" -- "0..*" Slot    : имеет слоты
+Slot    "1" -- "0..1" Booking : занят записью
+
+Client  "1" -- "0..*" Booking : создаёт записи
+Client  "1" -- "0..1" Account : может иметь учётную запись
+Master  "1" -- "1"   Account  : работает через учётную запись
+
+Booking "1" -- "0..1" Payment   : фиксирует платёж
+Booking "1" -- "0..*" Reminder  : порождает напоминания
+Booking "1" -- "0..1" Review    : получает отзыв
+
+@enduml

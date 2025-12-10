@@ -1,0 +1,58 @@
+@startuml
+title BAP — диаграмма состояний сущности «Запись»
+
+[*] --> Created : createBooking
+
+state "Создана" as Created
+note right of Created
+  Запись только что создана:
+  слот забронирован, визит в будущем.
+end note
+
+Created --> Confirmed : autoConfirm/\n проверка слота ок
+
+state "Подтверждена" as Confirmed
+note right of Confirmed
+  Запись активна, клиент ожидается
+  в указанный слот.
+end note
+
+' Отмена до визита
+Confirmed --> CanceledByClient : clientCancel\n[до начала визита]
+Confirmed --> CanceledBySalon  : salonCancel
+
+' Визит состоялся
+Confirmed --> Done : markDone
+
+' Клиент не пришёл
+Confirmed --> NoShow : autoNoShow\n[клиент не пришел]
+
+state "Отменена клиентом" as CanceledByClient
+note right of CanceledByClient
+  Клиент отменил запись.
+  Слот можно вернуть в свободные.
+end note
+
+state "Отменена салоном" as CanceledBySalon
+note right of CanceledBySalon
+  Салон/мастер отменил запись.
+  Нужно уведомить клиента.
+end note
+
+state "Выполнена" as Done
+note right of Done
+  Услуга оказана, визит завершён.
+end note
+
+state "Неявка" as NoShow
+note right of NoShow
+  Клиент не пришёл.
+  Учитываем в статистике неявок.
+end note
+
+CanceledByClient --> [*]
+CanceledBySalon  --> [*]
+Done             --> [*]
+NoShow           --> [*]
+
+@enduml
